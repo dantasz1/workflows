@@ -1,0 +1,41 @@
+name: "Teste de Workflow 01x"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  EXEMPLO_VAR: "Valor Variavel de Exemplo"
+
+jobs:
+  job01:
+    name: "Job de Teste 01"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout do código"
+        uses: actions/checkout@v3
+
+      - name: "Exibir mensagem de teste"
+        run: |
+          echo "Este é um teste de workflow." 
+          ls -la
+            
+      - name: "Exibir data e hora atuais"
+        run: | 
+          date
+          echo "Variável de exemplo: $EXEMPLO_VAR"
+
+      - name: "Verificar versão do Node.js"
+        run: node -v
+
+      - name: "Dados do Runner"
+        run: |
+          echo "Sistema operacional: ${RUNNER_OS}"
+          echo "diretório do runner: ${RUNNER_TEMP}"
+          echo "Nome do runner: ${RUNNER_NAME}"
+          echo "Versão do runner: ${RUNNER_VERSION}"
+          echo "Usuario: ${WHOAMI_USER}"
+          echo "Diretório atual: ${PWD}"
